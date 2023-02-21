@@ -1,19 +1,30 @@
-import { Button, Container, FormControl, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import { Button, Container, FormControl, TextField } from "@mui/material";
+import axios from "axios";
+import React, { useState } from "react";
+import { useChatContext } from "../context/contextProvider";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-    const [formdata, setFormData] = useState({
-        email: "",
-        password: "",
-      });
-      const handleSubmit = () => {
-        console.log(formdata);
-      };
-      const handleChange = (e) => {
-        setFormData({ ...formdata, [e.target.name]: e.target.value });
-      };
+  const navigate= useNavigate()
+  const { formdata, setFormData } = useChatContext();
+  const handleSubmit = async() => {
+    const {data}= await axios.post("http://localhost:8080/raven/user/login",formdata)
+    // console.log(data)
+    localStorage.setItem("user",JSON.stringify(data))
+    navigate("/chats")
+  };
+  const handleChange = (e) => {
+    setFormData({ ...formdata, [e.target.name]: e.target.value });
+  };
   return (
-    <Container sx={{border: "1px solid grey", padding:"1rem" , minHeight:"300px"}}>
+    <Container
+      sx={{
+        border: "1px solid grey",
+        padding: "1rem",
+        minHeight: "300px",
+        backgroundColor: "white",
+      }}
+    >
       <FormControl
         sx={{ display: "flex", flexDirection: "column", gap: "20px" }}
       >
@@ -36,7 +47,7 @@ const SignIn = () => {
         </Button>
       </FormControl>
     </Container>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

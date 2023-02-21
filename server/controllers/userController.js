@@ -5,10 +5,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const registerUser = async (req, res) => {
-  const { name, email, password, pic } = req.body;
+  const { name, email, password } = req.body;
   //   res.send(req.body)
   if (!name || !email || !password) {
-    res.status(400).send("Enter all Fields");
+   return res.status(400).send("Enter all Fields");
   }
   const existingUser = await User.findOne({ email });
 
@@ -22,7 +22,6 @@ const registerUser = async (req, res) => {
     name,
     email,
     password: hashedPass,
-    pic,
   });
   //   res.send(user)
   const token = jwt.sign(
@@ -31,16 +30,15 @@ const registerUser = async (req, res) => {
     { expiresIn: "15d" }
   );
   if (user) {
-    res.status(200).send({
+   return res.status(200).send({
       _id: user._id,
       name: user.name,
       email: user.email,
-      pic: user.pic,
       isAdmin: user.isAdmin,
       token,
     });
   } else {
-    res.status(400).send("user not found");
+    return res.status(400).send("user not found");
   }
 };
 
@@ -67,6 +65,9 @@ const loginUser = async (req, res) => {
   });
 };
 const allUser = async (req, res) => {
+  const {search}= req.query
+  // console.log(req.userId)
+  // console.log(search)
   const users = await User.find({
     $or: [
       { name: { $regex: req.query.search, $options: "i" } },

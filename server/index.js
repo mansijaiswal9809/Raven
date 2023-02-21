@@ -13,9 +13,9 @@ app.use(express.json())
 app.get("/",(req,res)=>{
     res.send("welcome to chatapp")
 })
-app.use("/user",userRoutes)
-app.use("/chat",chatRoutes)
-app.use("/message", messageRoutes);
+app.use("/raven/user",userRoutes)
+app.use("/raven/chat",chatRoutes)
+app.use("/raven/message", messageRoutes);
 
 app.listen(8080,async()=>{
     try {

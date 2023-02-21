@@ -23,7 +23,7 @@ const sendMessage = async (req, res) => {
   }
 
   var newMessage = {
-    sender: req.user._id,
+    sender: req.userId,
     content: content,
     chat: chatId,
   };

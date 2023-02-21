@@ -3,7 +3,8 @@ const User = require("../models/userModel");
 
 const accessChat = async (req, res) => {
   const { friendId } = req.body;
-  console.log(req.userId);
+  console.log(req.userId, friendId);
+
   if (!friendId) {
     console.log("user params not sent with req");
     res.status(400).send("user params not sent with req");
@@ -45,7 +46,7 @@ const accessChat = async (req, res) => {
   }
 };
 const fetchChats = async (req, res) => {
-  console.log(req.userId);
+  // console.log(req.userId);
   try {
     Chat.find({ users: { $elemMatch: { $eq: req.userId } } })
       .populate("users", "-password")
@@ -116,7 +117,7 @@ const renameGroup = async (req, res) => {
 };
 const removeFromGroup = async (req, res) => {
   const { chatId, userId } = req.body;
-
+  // console.log(chatId,userId)
   const removed = await Chat.findByIdAndUpdate(
     chatId,
     {
