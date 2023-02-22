@@ -39,14 +39,18 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
     // console.log("errrrrrr")
   }, [fetchAgain, userL]);
   return (
-    <Container
+    <Box
       sx={{
-        width: "30vw",
+        width: {xs:"100vw", md:"30vw"},
+        // width:"30vw",
+        display:{xs:selectedChat?"none":"flex",md:"flex"},
+        flexDirection:"column",
+        alignContent:"center",
         minHeight: "95vh",
         backgroundColor: "white",
         marginTop: "1rem",
         color: "balck",
-        padding: "1rem",
+        padding: {xs:"0.5rem",sm:"1rem"},
       }}
     >
       <Stack direction="row" justifyContent="space-between">
@@ -57,7 +61,7 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
           </Button>
         </BasicModal>
       </Stack>
-      <Box p={3} w="100%" h="100%" borderRadius="lg">
+      <Box p={3} width="90%" height="100%" borderRadius={2} sx={{alignSelf:"center"}}>
         {chats && (
           <Stack sx={{ overflowY: "scroll", height: "78vh" }} gap={1}>
             {chats
@@ -94,7 +98,7 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
           </Stack>
         )}
       </Box>
-    </Container>
+    </Box>
   );
 };
 

@@ -9,7 +9,7 @@ const ContextProvider = ({ children }) => {
     password: "",
   });
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedChat, setSelectedChat] = useState();
+  const [selectedChat, setSelectedChat] = useState(null);
   const [userL, setUserL] = useState();
   const [notification, setNotification] = useState([]);
   const [chats, setChats] = useState();
@@ -19,7 +19,10 @@ const ContextProvider = ({ children }) => {
 
     if (!userInfo) navigate("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [navigate]);
+  }, [navigate])
+  useEffect(()=>{
+    setSelectedChat(null)
+  },[userL])
 
   return (
     <context.Provider

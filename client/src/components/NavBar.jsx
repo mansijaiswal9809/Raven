@@ -14,7 +14,9 @@ const NavBar = () => {
       padding={2}
       marginX={1}
       marginTop={1}
-      sx={{ fontSize: "20px", backgroundColor: "white", borderRadius: "10px" }}
+      color="green"
+      sx={{ backgroundColor: "white", borderRadius: "10px" ,fontFamily: "'Kenia', cursive",
+      fontSize: "25px" }}
     >
       <Stack
         direction="row"
@@ -25,13 +27,11 @@ const NavBar = () => {
         <Box>
           <BsSearch />
         </Box>
-        <Box>Search User</Box>
+        <Box sx={{display:{xs:"none", sm:"inline-block"}}}>Search User</Box>
       </Stack>
       <Box
         sx={{
-          fontFamily: "'Kenia', cursive",
           fontSize: "40px",
-          color: "green",
         }}
       >
         {" "}

@@ -134,19 +134,23 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
   return (
     <Container
       sx={{
-        width: "70vw",
+        width: { xs: "100vw", md: "70vw" },
+        display: {
+          xs: !selectedChat ? "none" : "inline-block",
+          md: "inline-block",
+        },
         minHeight: "95vh",
         backgroundColor: "white",
         marginTop: "1rem",
         color: "black",
-        padding: "1rem",
+        // padding: "1rem",
       }}
     >
       {selectedChat ? (
         <>
           <Box
             // pb={3}
-            px={2}
+            // px={2}
             // width="100%"
             fontFamily="Work sans"
             sx={{
@@ -187,44 +191,36 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
             display="flex"
             flexDirection="column"
             justifyContent="flex-end"
-            p={3}
             bg="#E8E8E8"
             w="100%"
             h="100%"
-            borderRadius="lg"
+            borderRadius={1}
             // overflowY="hidden"
             overflow="hidden"
           >
             {loading ? (
               <div>loading...</div>
             ) : (
-              <div
+              <Box
                 className="messages"
-                style={{
-                  height: "58vh",
-                  padding: "1rem",
+                sx={{
+                  height: "68vh",
+                  padding: { xs: "0.5rem", sm: "1rem" },
                   backgroundColor: "lightgrey",
                   borderRadius: "8px",
                 }}
               >
                 <ChatScroll messages={messages} />
-              </div>
+              </Box>
             )}
 
-            <FormControl
-              onKeyDown={sendMessage}
-              id="first-name"
-              required
-              mt={3}
-              sx={{ position: "absolute", bottom: "15px", width: "63%" }}
-            >
-              {istyping ? <div>typing...</div> : <></>}
-              <TextField
-                label="Enter a message.."
-                onChange={typingHandler}
-                fullWidth
-              />
-            </FormControl>
+            {istyping ? <div>typing...</div> : <></>}
+            <TextField
+              label="Enter a message.."
+              onChange={typingHandler}
+              fullWidth
+              sx={{marginTop:'9px'}}
+            />
           </Box>
         </>
       ) : (

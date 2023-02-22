@@ -15,13 +15,13 @@ const Auth = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const Navigate= useNavigate()
-  useEffect(()=>{
-    const user=JSON.parse(localStorage.getItem("user"))
-    if(user){
-      Navigate("/chats")
+  const Navigate = useNavigate();
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      Navigate("/chats");
     }
-  },[Navigate])
+  }, [Navigate]);
 
   return (
     <Box
@@ -32,33 +32,51 @@ const Auth = () => {
         placeContent: "center",
         height: "100vh",
         // backgroundColor: "green",
-        boxSizing:"border-box"
+        boxSizing: "border-box",
       }}
     >
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider", width:"25vw"}}>
-          <TabList onChange={handleChange} aria-label="lab API tabs example" sx={{width:"100%"}}>
-            <Tab
-              label="Sign Up"
-              value="1"
-              sx={{ backgroundColor: "#AFEEEE", width:"50%" }}
-            />
-            <Tab
-              label="Sign In"
-              value="2"
-              sx={{ backgroundColor: "#AFEEEE", width:"50%" }}
-            />
-            {/* <Tab label="Item Three" value="3" /> */}
-          </TabList>
-        </Box>
-        <TabPanel value="1" sx={{width:"26rem",padding:"5% 2%"}}>
-          <SignUp />
-        </TabPanel>
-        <TabPanel value="2" sx={{width:"26rem", padding:"5% 2%"}}>
-          <SignIn />
-        </TabPanel>
-        {/* <TabPanel value="3">Item Three</TabPanel> */}
-      </TabContext>
+      <Box height={{xs:"100vh",sm:"auto"}} marginTop={{xs:"30px", sm:"auto"}}>
+        <TabContext value={value}>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              width: { xs: "100vw", sm: "500px" },
+            }}
+          >
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+              sx={{ width: "100%" }}
+            >
+              <Tab
+                label="Sign Up"
+                value="1"
+                sx={{ backgroundColor: "#AFEEEE", width: "50%" }}
+              />
+              <Tab
+                label="Sign In"
+                value="2"
+                sx={{ backgroundColor: "#AFEEEE", width: "50%" }}
+              />
+              {/* <Tab label="Item Three" value="3" /> */}
+            </TabList>
+          </Box>
+          <TabPanel
+            value="1"
+            sx={{ width: { xs: "100vw", sm: "500px" }, padding: "5% 2%" , transform:"translateX(-10px)"}}
+          >
+            <SignUp />
+          </TabPanel>
+          <TabPanel
+            value="2"
+            sx={{ width: { xs: "100vw", sm: "500px" }, padding: "5% 2%",transform:"translateX(-10px)" }}
+          >
+            <SignIn />
+          </TabPanel>
+          {/* <TabPanel value="3">Item Three</TabPanel> */}
+        </TabContext>
+      </Box>
     </Box>
   );
 };

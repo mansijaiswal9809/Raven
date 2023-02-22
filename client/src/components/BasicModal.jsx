@@ -10,17 +10,7 @@ import { Stack } from "@mui/system";
 import axios from "axios";
 import { deepOrange } from "@mui/material/colors";
 
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+
 
 export default function BasicModal({ children }) {
   const [groupChatName, setGroupChatName] = useState();
@@ -32,7 +22,7 @@ export default function BasicModal({ children }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleSubmit = async () => {
-    if (!groupChatName || selectedUsers.length<2) {
+    if (!groupChatName || selectedUsers.length < 2) {
       alert("Please select 2 users and a proper chat name");
       return;
     }
@@ -54,10 +44,10 @@ export default function BasicModal({ children }) {
       setChats([data, ...chats]);
       handleClose();
       alert("new group chat created");
-      setGroupChatName("")
-      setSearchResult([])
-      setSearch("")
-      setSelectedUsers([])
+      setGroupChatName("");
+      setSearchResult([]);
+      setSearch("");
+      setSelectedUsers([]);
     } catch (error) {
       alert("failed to create group chat");
     }
@@ -101,7 +91,19 @@ export default function BasicModal({ children }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: {xs:250,sm:400},
+            bgcolor: "background.paper",
+            border: "2px solid #000",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Create Group Chat
           </Typography>
@@ -124,7 +126,7 @@ export default function BasicModal({ children }) {
             </FormControl>
           </Stack>
           <Stack direction="row" gap={1} marginY={1} flexWrap="wrap">
-            {selectedUsers.map((u,i) => (
+            {selectedUsers.map((u, i) => (
               <Chip
                 label={u.name}
                 onDelete={() => handleDelete(u)}
@@ -138,7 +140,7 @@ export default function BasicModal({ children }) {
               searchResult
                 ?.slice(0, 4)
                 ?.filter((user) => user._id !== userL._id)
-                .map((user,i) => (
+                .map((user, i) => (
                   <Stack
                     component={Button}
                     direction="row"

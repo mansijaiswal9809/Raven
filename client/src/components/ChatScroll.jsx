@@ -42,7 +42,7 @@ const isLastMessage = (messages, i, userId) => {
 };
 const ChatScroll = ({ messages }) => {
   const { userL } = useChatContext();
-  console.log(messages);
+  // console.log(messages);
   return (
     <ScrollableFeed
       forceScroll={true}

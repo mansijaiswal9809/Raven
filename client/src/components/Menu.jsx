@@ -46,7 +46,11 @@ export default function PositionedMenu() {
           </Avatar>
         )}
       </Button>
-      {!user && <Link to="/">Login</Link>}
+      {!user && (
+        <Link to="/" style={{ textDecoration: "none", color: "green" }}>
+          Login
+        </Link>
+      )}
       <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
@@ -62,8 +66,8 @@ export default function PositionedMenu() {
           horizontal: "left",
         }}
       >
-        <MenuItem onClick={handleShowProfile}>My Profile</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        {userL && <MenuItem onClick={handleShowProfile}>{userL.name}</MenuItem>}
+        {userL && <MenuItem onClick={handleLogout}>Logout</MenuItem>}
         {/* <MenuItem onClick={handleClose}>Logout</MenuItem> */}
       </Menu>
     </div>

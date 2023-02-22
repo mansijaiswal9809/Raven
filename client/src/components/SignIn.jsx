@@ -36,7 +36,7 @@ const SignIn = () => {
       sx={{
         border: "1px solid grey",
         padding: "1rem",
-        minHeight: "300px",
+        // minHeight: "300px",
         backgroundColor: "white",
       }}
     >

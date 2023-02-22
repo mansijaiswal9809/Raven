@@ -53,9 +53,10 @@ const SearchUserSidebar = () => {
         left: sidebarOpen ? 0 : "-500px",
         transition: "all 1s",
         backgroundColor: "white",
-        width: "25rem",
+        width: {xs:"18rem", sm:"22rem"},
         overflowY: "scroll",
         zIndex: 999,
+        boxShadow:"2px 2px 50px 2px grey"
       }}
     >
       <Stack direction="row" gap={3} aligncontents="center">
