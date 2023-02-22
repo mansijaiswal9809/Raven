@@ -8,14 +8,14 @@ import {
   Stack,
   TextField,
   Typography,
-  useRadioGroup,
 } from "@mui/material";
 import { deepOrange } from "@mui/material/colors";
 import axios from "axios";
 import React, { useState } from "react";
 import { useChatContext } from "../context/contextProvider";
 
-const UpdateGroupChatModal = ({ children }) => {
+const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
+  // console.log(setFetchAgain)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -36,49 +36,55 @@ const UpdateGroupChatModal = ({ children }) => {
         `http://localhost:8080/raven/user?search=${search}`,
         config
       );
-      const users=selectedChat.users.map((user)=>user._id)
-      setSearchResult(data.filter((user)=>!users.includes(user._id)))
+      const users = selectedChat.users.map((user) => user._id);
+      setSearchResult(data.filter((user) => !users.includes(user._id)));
     } catch (error) {
       alert(error);
     }
   };
-  const renameGroup = async() => {
-    alert("You are Sure to rename this group")
+  const renameGroup = async () => {
+    alert("You are Sure to rename this group");
     try {
-        const {data}= await axios.put("http://localhost:8080/raven/chat/rename",{chatId:selectedChat._id,chatName:groupChatName})
-        setSelectedChat(data)
-        handleClose()
+      const { data } = await axios.put(
+        "http://localhost:8080/raven/chat/rename",
+        { chatId: selectedChat._id, chatName: groupChatName }
+      );
+      setSelectedChat(data);
+      handleClose();
+      setFetchAgain(true);
     } catch (error) {
-        alert(error.message)
+      alert(error.message);
     }
   };
   const handleDelete = async (delUser) => {
     alert("You are sure to delete this user");
     // console.log(delUser)
     try {
-        const { data } = await axios.put(
-          "http://localhost:8080/raven/chat/groupremove",
-          { chatId: selectedChat._id, userId: delUser._id },
-          config
-        );
-        setSelectedChat(data);    
-        handleClose()
+      const { data } = await axios.put(
+        "http://localhost:8080/raven/chat/groupremove",
+        { chatId: selectedChat._id, userId: delUser._id },
+        config
+      );
+      setSelectedChat(data);
+      handleClose();
+      setFetchAgain(true);
     } catch (error) {
-        alert("error",error.message)
+      alert("error", error.message);
     }
   };
   const AddUser = async (user) => {
     alert("You are sure to add this User");
     try {
-        const { data } = await axios.put(
-          "http://localhost:8080/raven/chat/groupadd",
-          { chatId: selectedChat._id, userId: user._id },
-          config
-        );
-        setSelectedChat(data)
-        handleClose()
+      const { data } = await axios.put(
+        "http://localhost:8080/raven/chat/groupadd",
+        { chatId: selectedChat._id, userId: user._id },
+        config
+      );
+      setSelectedChat(data);
+      handleClose();
+      setFetchAgain(true);
     } catch (error) {
-     alert("error",error.message)   
+      alert("error", error.message);
     }
   };
   const style = {
@@ -122,7 +128,7 @@ const UpdateGroupChatModal = ({ children }) => {
               <Button
                 variant="contained"
                 sx={{ width: "30%" }}
-                  onClick={renameGroup}
+                onClick={renameGroup}
               >
                 Rename Group
               </Button>
@@ -137,11 +143,12 @@ const UpdateGroupChatModal = ({ children }) => {
             </FormControl>
           </Stack>
           <Stack direction="row" gap={1} marginY={1} flexWrap="wrap">
-            {selectedChat.users.map((u) => (
+            {selectedChat.users.map((u, i) => (
               <Chip
                 label={u.name}
                 color="success"
                 onDelete={() => handleDelete(u)}
+                key={i}
               />
             ))}
           </Stack>
@@ -152,7 +159,7 @@ const UpdateGroupChatModal = ({ children }) => {
                 ?.filter((user) => user._id !== userL._id)
                 .map((user) => (
                   <Stack
-                  component={Button}
+                    component={Button}
                     onClick={() => AddUser(user)}
                     direction="row"
                     alignItems="center"

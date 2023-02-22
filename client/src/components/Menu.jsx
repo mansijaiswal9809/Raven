@@ -4,10 +4,13 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { deepOrange } from '@mui/material/colors';
+import { deepOrange } from "@mui/material/colors";
+import { useChatContext } from "../context/contextProvider";
 
 export default function PositionedMenu() {
-  const Navigate=useNavigate()
+  const { userL } = useChatContext();
+  const [user, setUser] = React.useState();
+  const Navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -19,13 +22,15 @@ export default function PositionedMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleLogout=()=>{
-    localStorage.removeItem("user")
-    Navigate("/")
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    Navigate("/");
     setAnchorEl(null);
-  }
-const user= JSON.parse(localStorage.getItem("user"))|| null
-// console.log(user)
+  };
+  React.useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")) || null);
+  }, [userL]);
+  // console.log(user)
   return (
     <div>
       <Button
@@ -35,7 +40,11 @@ const user= JSON.parse(localStorage.getItem("user"))|| null
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-         {user&&<Avatar sx={{ width: 32, height: 32,bgcolor: deepOrange[500] }}>{user.name[0]}</Avatar>}
+        {user && (
+          <Avatar sx={{ width: 32, height: 32, bgcolor: deepOrange[500] }}>
+            {user.name[0]}
+          </Avatar>
+        )}
       </Button>
       {!user && <Link to="/">Login</Link>}
       <Menu

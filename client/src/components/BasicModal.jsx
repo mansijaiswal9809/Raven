@@ -116,7 +116,7 @@ export default function BasicModal({ children }) {
             </FormControl>
             <FormControl>
               <TextField
-                label="Add Users eg: John, Piyush, Jane"
+                label="Add friends"
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
                 fullWidth
@@ -124,12 +124,12 @@ export default function BasicModal({ children }) {
             </FormControl>
           </Stack>
           <Stack direction="row" gap={1} marginY={1} flexWrap="wrap">
-            {selectedUsers.map((u) => (
+            {selectedUsers.map((u,i) => (
               <Chip
                 label={u.name}
                 onDelete={() => handleDelete(u)}
                 color="success"
-                key={u._id}
+                key={i}
               />
             ))}
           </Stack>
@@ -138,13 +138,13 @@ export default function BasicModal({ children }) {
               searchResult
                 ?.slice(0, 4)
                 ?.filter((user) => user._id !== userL._id)
-                .map((user) => (
+                .map((user,i) => (
                   <Stack
                     component={Button}
                     direction="row"
                     alignItems="center"
                     gap={2}
-                    key={user?._id}
+                    key={i}
                     onClick={() => handlegroup(user)}
                   >
                     <Avatar sx={{ bgcolor: deepOrange[500] }}>

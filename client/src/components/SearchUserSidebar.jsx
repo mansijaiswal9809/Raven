@@ -9,12 +9,7 @@ import { RxCross2 } from "react-icons/rx";
 const SearchUserSidebar = () => {
   const [users, setUsers] = useState([]);
   const { sidebarOpen, setSidebarOpen } = useChatContext();
-  const {
-    userL,
-    setSelectedChat,
-    chats,
-    setChats,
-  } = useChatContext();
+  const { userL, setSelectedChat, chats, setChats } = useChatContext();
   const config = {
     headers: {
       "Content-type": "application/json",
@@ -40,7 +35,7 @@ const SearchUserSidebar = () => {
         { friendId },
         config
       );
-     if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
+      if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);
       setSelectedChat(data);
       setSidebarOpen(false);
     } catch (error) {
@@ -60,6 +55,7 @@ const SearchUserSidebar = () => {
         backgroundColor: "white",
         width: "25rem",
         overflowY: "scroll",
+        zIndex: 999,
       }}
     >
       <Stack direction="row" gap={3} aligncontents="center">
@@ -78,12 +74,12 @@ const SearchUserSidebar = () => {
         {users &&
           users
             ?.filter((user) => user._id !== userL._id)
-            .map((user) => (
+            .map((user, i) => (
               <Stack
                 direction="row"
                 alignItems="center"
                 gap={2}
-                key={user?._id}
+                key={i}
                 onClick={() => openChat(user._id)}
               >
                 <Avatar sx={{ bgcolor: deepOrange[500] }}>

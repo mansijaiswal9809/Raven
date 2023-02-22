@@ -46,16 +46,16 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
   const existingUser = await User.findOne({ email });
   if (!existingUser) {
-    res.status(404).send("No Existing User.. please Sign Up");
+    return res.status(404).send("No Existing User.. please Sign Up");
   }
   const isPassCorr = await bcrypt.compare(password, existingUser.password);
   if (!isPassCorr) {
-    res.status(400).send("invalid password");
+   return res.status(400).send({message:"invalid password"});
   }
   const token = jwt.sign({ email, _id: existingUser._id }, process.env.SECRET, {
     expiresIn: "15d",
   });
-  res.status(200).send({
+  return  res.status(200).send({
     email,
     name: existingUser.name,
     _id: existingUser._id,
@@ -74,6 +74,6 @@ const allUser = async (req, res) => {
       { email: { $regex: req.query.search, $options: "i" } },
     ],
   });
-  res.send(users);
+ return res.send(users);
 };
 module.exports = { registerUser, loginUser, allUser };

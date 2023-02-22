@@ -3,10 +3,10 @@ const User = require("../models/userModel");
 
 const accessChat = async (req, res) => {
   const { friendId } = req.body;
-  console.log(req.userId, friendId);
+  // console.log(req.userId, friendId);
 
   if (!friendId) {
-    console.log("user params not sent with req");
+    // console.log("user params not sent with req");
     res.status(400).send("user params not sent with req");
   }
   var isChat = await Chat.find({
@@ -68,7 +68,7 @@ const createGroupChat = async (req, res) => {
   if (!req.body.users || !req.body.name) {
     return res.status(400).send({ message: "Please Fill all the feilds" });
   }
-  console.log(req.userId);
+  // console.log(req.userId);
   var users = JSON.parse(req.body.users);
   if (users.length < 2) {
     return res

@@ -1,17 +1,32 @@
-import { Button, Container, FormControl, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  TextField,
+} from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useChatContext } from "../context/contextProvider";
 import { useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-  const navigate= useNavigate()
+  const navigate = useNavigate();
   const { formdata, setFormData } = useChatContext();
-  const handleSubmit = async() => {
-    const {data}= await axios.post("http://localhost:8080/raven/user/login",formdata)
-    // console.log(data)
-    localStorage.setItem("user",JSON.stringify(data))
-    navigate("/chats")
+  const handleSubmit = async () => {
+    try {
+      const { data } = await axios.post(
+        "http://localhost:8080/raven/user/login",
+        formdata
+      );
+      // console.log(data)
+      localStorage.setItem("user", JSON.stringify(data));
+      navigate("/chats");
+    } catch (error) {
+      // <Alert sx={{width:"100%"}} variant="filled" severity="error">
+      //   {error.message}
+      // </Alert>;
+      alert(error.message);
+    }
   };
   const handleChange = (e) => {
     setFormData({ ...formdata, [e.target.name]: e.target.value });
