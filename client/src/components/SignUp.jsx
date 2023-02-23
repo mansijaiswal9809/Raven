@@ -1,9 +1,11 @@
 import { Button, Container, FormControl, TextField } from "@mui/material";
 import axios from "axios";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useChatContext } from "../context/contextProvider";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const { formdata, setFormData } = useChatContext();
   const handleSubmit = async () => {
     // console.log(formdata)
@@ -12,6 +14,7 @@ const SignUp = () => {
       formdata
     );
     // console.log(data)
+    navigate("/chats")
     setFormData({
       name: "",
       email: "",

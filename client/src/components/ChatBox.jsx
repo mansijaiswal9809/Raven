@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Container,
-  FormControl,
   TextField,
   Typography,
 } from "@mui/material";
@@ -32,6 +31,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [istyping, setIsTyping] = useState(false);
   const [socketConnected, setSocketConnected] = useState(false);
+  // console.log(messages)
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -58,8 +58,8 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
 
   const sendMessage = async (event) => {
     if (event.key === "Enter" && newMessage) {
-      socket.emit("stop typing", selectedChat._id);
       setNewMessage("");
+      socket.emit("stop typing", selectedChat._id);
       const config = {
         headers: {
           "Content-type": "application/json",
@@ -74,10 +74,10 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
             chatId: selectedChat,
           },
           config
-        );
-        setMessages([...messages, data]);
-        setFetchAgain(true);
-        socket.emit("new message", data);
+          );
+          setMessages([...messages, data]);
+          setFetchAgain(true);
+          socket.emit("new message", data);
       } catch (error) {
         alert(error.message);
       }
@@ -95,6 +95,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
   useEffect(() => {
     fetchMessages();
     selectedChatCompare = selectedChat;
+    if(selectedChat) setNotification(notification.filter((message)=>message.chat._id!==selectedChat._id))
   }, [selectedChat]);
   useEffect(() => {
     socket.on("message recieved", (newMessageRecieved) => {
@@ -104,6 +105,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
       ) {
         if (!notification.includes(newMessageRecieved)) {
           setNotification([newMessageRecieved, ...notification]);
+          localStorage.setItem("notification",JSON.stringify(notification))
           setFetchAgain(!fetchAgain);
         }
       } else {

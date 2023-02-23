@@ -11,7 +11,7 @@ const ContextProvider = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedChat, setSelectedChat] = useState(null);
   const [userL, setUserL] = useState();
-  const [notification, setNotification] = useState([]);
+  const [notification, setNotification] = useState(JSON.parse(localStorage.getItem("notification"))|| []);
   const [chats, setChats] = useState();
   useEffect(() => {
     const userInfo = JSON.parse(localStorage.getItem("user"));
