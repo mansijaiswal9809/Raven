@@ -8,6 +8,7 @@ const chatRoutes = require("./routes/chatRoutes")
 const messageRoutes = require("./routes/messageRoutes")
 const { connection } = require("./config/db")
 const app= express()
+const port= process.env.PORT || 8080
 app.use(cors())
 app.use(express.json())
 app.get("/",(req,res)=>{
@@ -17,14 +18,14 @@ app.use("/raven/user",userRoutes)
 app.use("/raven/chat",chatRoutes)
 app.use("/raven/message", messageRoutes);
 
-const server=app.listen(8080,async()=>{
+const server=app.listen(port,async()=>{
     try {
         await connection
         console.log("connection success")
     } catch (error) {
         console.log(error)
     }
-    console.log(`server running on port ${8080}`)
+    console.log(`server running on port ${port}`)
 })
 
 const io=require("socket.io")(server,{
