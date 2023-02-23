@@ -34,7 +34,7 @@ export default function BasicModal({ children }) {
         },
       };
       const { data } = await axios.post(
-        "http://localhost:8080/raven/chat/group",
+        "https://raven-api-klak.onrender.com/raven/chat/group",
         {
           name: groupChatName,
           users: JSON.stringify(selectedUsers.map((u) => u._id)),
@@ -69,7 +69,7 @@ export default function BasicModal({ children }) {
     setSearch(query);
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/raven/user?search=${search}`,
+        `https://raven-api-klak.onrender.com/raven/user?search=${search}`,
         config
       );
       setSearchResult(data);

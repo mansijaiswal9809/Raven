@@ -10,7 +10,7 @@ const SignUp = () => {
   const handleSubmit = async () => {
     // console.log(formdata)
     const { data } = await axios.post(
-      "http://localhost:8080/raven/user",
+      "https://raven-api-klak.onrender.com/raven/user",
       formdata
     );
     // console.log(data)

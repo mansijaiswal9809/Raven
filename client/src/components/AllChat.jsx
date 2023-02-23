@@ -29,7 +29,7 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        "http://localhost:8080/raven/chat",
+        "https://raven-api-klak.onrender.com/raven/chat",
         config
       );
       setChats(data);

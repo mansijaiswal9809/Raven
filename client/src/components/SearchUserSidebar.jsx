@@ -20,7 +20,7 @@ const SearchUserSidebar = () => {
     const val = e.target.value;
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/raven/user?search=${val}`,
+        `https://raven-api-klak.onrender.com/raven/user?search=${val}`,
         config
       );
       setUsers(data);
@@ -31,7 +31,7 @@ const SearchUserSidebar = () => {
   const openChat = async (friendId) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:8080/raven/chat",
+        "https://raven-api-klak.onrender.com/raven/chat",
         { friendId },
         config
       );

@@ -33,7 +33,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
     setSearch(query);
     try {
       const { data } = await axios.get(
-        `http://localhost:8080/raven/user?search=${search}`,
+        `https://raven-api-klak.onrender.com/raven/user?search=${search}`,
         config
       );
       const users = selectedChat.users.map((user) => user._id);
@@ -46,7 +46,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
     alert("You are Sure to rename this group");
     try {
       const { data } = await axios.put(
-        "http://localhost:8080/raven/chat/rename",
+        "https://raven-api-klak.onrender.com/raven/chat/rename",
         { chatId: selectedChat._id, chatName: groupChatName }
       );
       setSelectedChat(data);
@@ -61,7 +61,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
     // console.log(delUser)
     try {
       const { data } = await axios.put(
-        "http://localhost:8080/raven/chat/groupremove",
+        "https://raven-api-klak.onrender.com/raven/chat/groupremove",
         { chatId: selectedChat._id, userId: delUser._id },
         config
       );
@@ -76,7 +76,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
     alert("You are sure to add this User");
     try {
       const { data } = await axios.put(
-        "http://localhost:8080/raven/chat/groupadd",
+        "https://raven-api-klak.onrender.com/raven/chat/groupadd",
         { chatId: selectedChat._id, userId: user._id },
         config
       );

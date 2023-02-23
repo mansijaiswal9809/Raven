@@ -13,7 +13,7 @@ import UpdateGroupChatModal from "./UpdateGroupChatModal";
 import axios from "axios";
 import { AiFillEdit } from "react-icons/ai";
 import ChatScroll from "./ChatScroll";
-const ENDPOINT = "http://localhost:8080";
+const ENDPOINT = "https://raven-api-klak.onrender.com";
 var socket, selectedChatCompare;
 
 const ChatBox = ({ fetchAgain, setFetchAgain }) => {
@@ -45,7 +45,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
       };
 
       const { data } = await axios.get(
-        `http://localhost:8080/raven/message/${selectedChat._id}`,
+        `https://raven-api-klak.onrender.com/raven/message/${selectedChat._id}`,
         config
       );
       setLoading(false);
@@ -68,7 +68,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
       };
       try {
         const { data } = await axios.post(
-          "http://localhost:8080/raven/message",
+          "https://raven-api-klak.onrender.com/raven/message",
           {
             content: newMessage,
             chatId: selectedChat,
