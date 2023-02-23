@@ -46,7 +46,7 @@ const ChatScroll = ({ messages }) => {
   return (
     <ScrollableFeed
       forceScroll={true}
-      sx={{ height: "65vh", backgroundColor: "red" }}
+      sx={{ height: "65vh" }}
     >
       {messages &&
         messages.map((m, i) => (
@@ -61,9 +61,8 @@ const ChatScroll = ({ messages }) => {
             )}
             <span
               style={{
-                backgroundColor: `${
-                  m.sender._id === userL._id ? "#BEE3F8" : "#B9F5D0"
-                }`,
+                backgroundColor: "#6e1e96",
+                color:"white",
                 marginLeft: isSameSenderMargin(messages, m, i, userL._id),
                 marginTop: isSameUser(messages, m, i, userL._id) ? 3 : 10,
                 borderRadius: "20px",

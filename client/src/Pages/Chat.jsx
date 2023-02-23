@@ -8,7 +8,7 @@ const Chat = () => {
   const [fetchAgain, setFetchAgain] = useState(false);
   const { userL } = useChatContext();
   return (
-    <Stack direction="row" gap={2} margin={1} borderRadius={3}>
+    <Stack direction="row" gap={2} margin={1} borderRadius={3} maxHeight="90vh">
       {userL && <AllChat  fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
       {userL && <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
     </Stack>

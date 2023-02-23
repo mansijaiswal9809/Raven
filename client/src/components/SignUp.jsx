@@ -1,6 +1,6 @@
 import { Button, Container, FormControl, TextField } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useChatContext } from "../context/contextProvider";
 
 const SignUp = () => {
@@ -25,11 +25,10 @@ const SignUp = () => {
   return (
     <Container
       sx={{
-        border: "1px solid grey",
         padding: "1rem",
         minHeight: "300px",
         boxSizing: "border-box",
-        backgroundColor: "white",
+        backgroundColor: "black",
       }}
     >
       <FormControl
@@ -42,6 +41,8 @@ const SignUp = () => {
           name="name"
           value={formdata.name}
           onChange={handleChange}
+          color="secondary"
+          focused
         />
         <TextField
           type="email"
@@ -49,6 +50,8 @@ const SignUp = () => {
           name="email"
           value={formdata.email}
           onChange={handleChange}
+          color="secondary"
+          focused
         />
         <TextField
           type="password"
@@ -56,8 +59,10 @@ const SignUp = () => {
           name="password"
           value={formdata.password}
           onChange={handleChange}
+          color="secondary"
+          focused
         />
-        <Button type="submit" variant="contained" onClick={handleSubmit}>
+        <Button type="submit" variant="contained" onClick={handleSubmit} color="secondary">
           Submit
         </Button>
       </FormControl>

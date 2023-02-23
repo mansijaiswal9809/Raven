@@ -47,16 +47,16 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
         flexDirection:"column",
         alignContent:"center",
         minHeight: "95vh",
-        backgroundColor: "white",
+        backgroundColor: "black",
         marginTop: "1rem",
-        color: "balck",
+        color: "#9d47c8",
         padding: {xs:"0.5rem",sm:"1rem"},
       }}
     >
       <Stack direction="row" justifyContent="space-between">
         <Box>My Chats</Box>
         <BasicModal>
-          <Button variant="outlined" startIcon={<AiOutlinePlus />}>
+          <Button  color="secondary"  variant="outlined" startIcon={<AiOutlinePlus />}>
             Create Group Chat
           </Button>
         </BasicModal>
@@ -71,9 +71,9 @@ const AllChat = ({ fetchAgain, setFetchAgain }) => {
                   onClick={() => setSelectedChat(chat)}
                   sx={{
                     backgroundColor:
-                      selectedChat === chat ? "#38B2AC" : "#E8E8E8",
+                      selectedChat === chat ? "#6e1e96" : "#2E1A47",
                   }}
-                  color={selectedChat === chat ? "white" : "black"}
+                  color={"white" }
                   px={3}
                   py={2}
                   key={i}

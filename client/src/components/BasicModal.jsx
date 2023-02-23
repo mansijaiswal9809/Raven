@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Avatar, Chip, FormControl, TextField } from "@mui/material";
 import { Stack } from "@mui/system";
 import axios from "axios";
-import { deepOrange } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 
 
 
@@ -84,7 +84,7 @@ export default function BasicModal({ children }) {
 
   return (
     <div>
-      <Box onClick={handleOpen}>{children}</Box>
+      <Box  onClick={handleOpen}>{children}</Box>
       <Modal
         open={open}
         onClose={handleClose}
@@ -98,22 +98,24 @@ export default function BasicModal({ children }) {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: {xs:250,sm:400},
-            bgcolor: "background.paper",
-            border: "2px solid #000",
-            boxShadow: 24,
+            bgcolor: "black",
+            border:"2px solid #911f91",
+            boxShadow: 48,
             p: 4,
           }}
         >
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h6" component="h2" color="secondary">
             Create Group Chat
           </Typography>
           <Stack gap={2} id="modal-modal-description" sx={{ mt: 2 }}>
             <FormControl>
               <TextField
-                placeholder="Chat Name"
+                label="Chat Name"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
                 fullWidth
+                color="secondary"
+                focused
               />
             </FormControl>
             <FormControl>
@@ -122,6 +124,8 @@ export default function BasicModal({ children }) {
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
                 fullWidth
+                color="secondary"
+                focused
               />
             </FormControl>
           </Stack>
@@ -130,7 +134,7 @@ export default function BasicModal({ children }) {
               <Chip
                 label={u.name}
                 onDelete={() => handleDelete(u)}
-                color="success"
+                color="secondary"
                 key={i}
               />
             ))}
@@ -149,14 +153,14 @@ export default function BasicModal({ children }) {
                     key={i}
                     onClick={() => handlegroup(user)}
                   >
-                    <Avatar sx={{ bgcolor: deepOrange[500] }}>
+                    <Avatar sx={{ bgcolor: deepPurple[500] }}>
                       {user?.name[0]}
                     </Avatar>
                     <Box>{user?.name}</Box>
                   </Stack>
                 ))}
           </Stack>
-          <Button onClick={handleSubmit} variant="contained" fullWidth>
+          <Button onClick={handleSubmit} variant="contained" fullWidth color="secondary">
             Create Chat
           </Button>
         </Box>

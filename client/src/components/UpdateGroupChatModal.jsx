@@ -9,7 +9,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { deepOrange } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 import axios from "axios";
 import React, { useState } from "react";
 import { useChatContext } from "../context/contextProvider";
@@ -93,8 +93,8 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: {xs:250,sm:400},
-    bgcolor: "background.paper",
-    border: "2px solid #000",
+    bgcolor: "black",
+    border: "2px solid #610a5e",
     boxShadow: 24,
     p: {xs:2, sm:4},
   };
@@ -108,7 +108,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
+          <Typography id="modal-modal-title" variant="h6" component="h2" color="secondary">
             Edit your Group
           </Typography>
           <Stack gap={2} id="modal-modal-description" sx={{ mt: 2 }}>
@@ -121,14 +121,17 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
             >
               <TextField
                 sx={{ width: "70%" }}
-                placeholder="Rename Your Group"
+                label="Rename Your Group"
                 mb={3}
                 onChange={(e) => setGroupChatName(e.target.value)}
+                color="secondary"
+                focused
               />
               <Button
                 variant="contained"
-                sx={{ width: "30%" }}
+                sx={{ width: "30%", transform:"transLateY(-3px)" }}
                 onClick={renameGroup}
+                color="secondary"
               >
                 Rename Group
               </Button>
@@ -139,6 +142,8 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
                 mb={1}
                 onChange={(e) => handleSearch(e.target.value)}
                 fullWidth
+                color="secondary"
+                focused
               />
             </FormControl>
           </Stack>
@@ -146,7 +151,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
             {selectedChat.users.map((u, i) => (
               <Chip
                 label={u.name}
-                color="success"
+                color="secondary"
                 onDelete={() => handleDelete(u)}
                 key={i}
               />
@@ -166,7 +171,7 @@ const UpdateGroupChatModal = ({ children, setFetchAgain }) => {
                     gap={2}
                     key={user?._id}
                   >
-                    <Avatar sx={{ bgcolor: deepOrange[500] }}>
+                    <Avatar sx={{ bgcolor: deepPurple[500] }}>
                       {user?.name[0]}
                     </Avatar>
                     <Box>{user?.name}</Box>

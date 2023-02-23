@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, Container, Tabs } from "@mui/material";
+import { Box } from "@mui/material";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
@@ -7,7 +7,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 import { useNavigate } from "react-router-dom";
-import { useChatContext } from "../context/contextProvider";
+
 
 const Auth = () => {
   const [value, setValue] = React.useState("1");
@@ -52,12 +52,12 @@ const Auth = () => {
               <Tab
                 label="Sign Up"
                 value="1"
-                sx={{ backgroundColor: "#AFEEEE", width: "50%" }}
+                sx={{ backgroundColor: "#9c27b0", width: "50%" }}
               />
               <Tab
                 label="Sign In"
                 value="2"
-                sx={{ backgroundColor: "#AFEEEE", width: "50%" }}
+                sx={{ backgroundColor: "#9c27b0", width: "50%" }}
               />
               {/* <Tab label="Item Three" value="3" /> */}
             </TabList>

@@ -14,8 +14,8 @@ const NavBar = () => {
       padding={2}
       marginX={1}
       marginTop={1}
-      color="green"
-      sx={{ backgroundColor: "white", borderRadius: "10px" ,fontFamily: "'Kenia', cursive",
+      color="#9d47c8"
+      sx={{ backgroundColor: "black", borderRadius: "10px" ,fontFamily: "'Kenia', cursive",
       fontSize: "25px" }}
     >
       <Stack

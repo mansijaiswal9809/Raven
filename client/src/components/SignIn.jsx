@@ -34,10 +34,8 @@ const SignIn = () => {
   return (
     <Container
       sx={{
-        border: "1px solid grey",
         padding: "1rem",
-        // minHeight: "300px",
-        backgroundColor: "white",
+        backgroundColor: "black",
       }}
     >
       <FormControl
@@ -49,6 +47,8 @@ const SignIn = () => {
           name="email"
           value={formdata.email}
           onChange={handleChange}
+          color="secondary"
+          focused
         />
         <TextField
           type="password"
@@ -56,8 +56,10 @@ const SignIn = () => {
           name="password"
           value={formdata.password}
           onChange={handleChange}
+          color="secondary"
+          focused
         />
-        <Button type="submit" variant="contained" onClick={handleSubmit}>
+        <Button type="submit" variant="contained" onClick={handleSubmit}  color="secondary">
           Submit
         </Button>
       </FormControl>

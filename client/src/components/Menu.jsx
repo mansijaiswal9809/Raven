@@ -4,7 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
-import { deepOrange } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 import { useChatContext } from "../context/contextProvider";
 
 export default function PositionedMenu() {
@@ -41,13 +41,13 @@ export default function PositionedMenu() {
         onClick={handleClick}
       >
         {user && (
-          <Avatar sx={{ width: 32, height: 32, bgcolor: deepOrange[500] }}>
+          <Avatar sx={{ width: 32, height: 32, bgcolor: deepPurple[500] }}>
             {user.name[0]}
           </Avatar>
         )}
       </Button>
       {!user && (
-        <Link to="/" style={{ textDecoration: "none", color: "green" }}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           Login
         </Link>
       )}

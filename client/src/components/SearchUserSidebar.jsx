@@ -3,7 +3,7 @@ import { Container } from "@mui/system";
 import axios from "axios";
 import React, { useState } from "react";
 import { useChatContext } from "../context/contextProvider";
-import { deepOrange } from "@mui/material/colors";
+import { deepPurple } from "@mui/material/colors";
 import { RxCross2 } from "react-icons/rx";
 
 const SearchUserSidebar = () => {
@@ -52,11 +52,12 @@ const SearchUserSidebar = () => {
         top: 0,
         left: sidebarOpen ? 0 : "-500px",
         transition: "all 1s",
-        backgroundColor: "white",
+        backgroundColor: "black",
         width: {xs:"18rem", sm:"22rem"},
         overflowY: "scroll",
         zIndex: 999,
-        boxShadow:"2px 2px 50px 2px grey"
+        boxShadow:"2px 2px 50px 2px black",
+        color:"white"
       }}
     >
       <Stack direction="row" gap={3} aligncontents="center">
@@ -66,8 +67,10 @@ const SearchUserSidebar = () => {
           variant="outlined"
           sx={{ marginTop: "1rem", width: "85%" }}
           onChange={SearchUser}
+          color="secondary"
+          focused
         />
-        <Button onClick={() => setSidebarOpen(false)}>
+        <Button onClick={() => setSidebarOpen(false)} sx={{transform:"translateY(6px)"}} color="secondary">
           <RxCross2 size="40px" />
         </Button>
       </Stack>
@@ -83,7 +86,7 @@ const SearchUserSidebar = () => {
                 key={i}
                 onClick={() => openChat(user._id)}
               >
-                <Avatar sx={{ bgcolor: deepOrange[500] }}>
+                <Avatar sx={{ bgcolor: deepPurple[500] }}>
                   {user?.name[0]}
                 </Avatar>
                 <Box>{user?.name}</Box>

@@ -140,9 +140,9 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
           md: "inline-block",
         },
         minHeight: "95vh",
-        backgroundColor: "white",
+        backgroundColor: "black",
         marginTop: "1rem",
-        color: "black",
+        color: "#9d47c8",
         // padding: "1rem",
       }}
     >
@@ -179,8 +179,8 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
                       fetchAgain={fetchAgain}
                       setFetchAgain={setFetchAgain}
                     >
-                      <Button>
-                        <AiFillEdit size="30px" />
+                      <Button color="secondary">
+                        <AiFillEdit size="30px" color="purple"/>
                       </Button>
                     </UpdateGroupChatModal>
                   )}
@@ -206,7 +206,7 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
                 sx={{
                   height: "68vh",
                   padding: { xs: "0.5rem", sm: "1rem" },
-                  backgroundColor: "lightgrey",
+                  backgroundColor: "#2E1A47",
                   borderRadius: "8px",
                 }}
               >
@@ -215,12 +215,19 @@ const ChatBox = ({ fetchAgain, setFetchAgain }) => {
             )}
 
             {istyping ? <div>typing...</div> : <></>}
+            <Box color="white">
             <TextField
               label="Enter a message.."
               onChange={typingHandler}
               fullWidth
-              sx={{marginTop:'9px'}}
-            />
+              sx={{marginTop:'9px', color:"white", borderColor:"purple"}}
+              onKeyDown={sendMessage}
+              color="secondary"
+              focused
+              className="text"
+              variant="filled"
+              />
+              </Box>
           </Box>
         </>
       ) : (
