@@ -16,7 +16,7 @@ app.get("/",(req,res)=>{
 })
 app.use("/raven/user",userRoutes)
 app.use("/raven/chat",chatRoutes)
-app.use("/raven/message", messageRoutes);
+app.use("/raven/message",messageRoutes)
 
 const server=app.listen(port,async()=>{
     try {
