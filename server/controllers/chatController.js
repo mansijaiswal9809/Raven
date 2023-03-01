@@ -155,7 +155,7 @@ const addToGroup = async (req, res) => {
     res.json(added);
   }
 };
-module.exports = {
+export {
   accessChat,
   fetchChats,
   createGroupChat,

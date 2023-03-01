@@ -9,4 +9,4 @@ router.route("/group").post(auth, createGroupChat);
 router.route("/rename").put(renameGroup);
 router.route("/groupremove").put(auth, removeFromGroup);
 router.route("/groupadd").put(auth, addToGroup);
-module.exports = router;
+export default router;

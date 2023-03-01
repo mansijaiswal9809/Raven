@@ -76,4 +76,4 @@ const allUser = async (req, res) => {
   });
  return res.send(users);
 };
-module.exports = { registerUser, loginUser, allUser };
+export { registerUser, loginUser, allUser };
