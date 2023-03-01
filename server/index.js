@@ -7,6 +7,7 @@ import userRoutes from "./routes/userRoutes.js"
 import chatRoutes from "./routes/chatRoutes.js"
 import messageRoutes from "./routes/messageRoutes.js"
 import { connection } from "./config/db.js"
+import { Server } from "socket.io";
 const app= express()
 const port= process.env.PORT || 8080
 app.use(cors())
@@ -28,7 +29,7 @@ const server=app.listen(port,async()=>{
     console.log(`server running on port ${port}`)
 })
 
-const io=require("socket.io")(server,{
+const io= new Server(server,{
     pingTimeOut:60000,
     cors:{
         origin: "http://localhost:3000",

@@ -3,7 +3,7 @@ import {
   allMessages,
   sendMessage,
 } from "../controllers/messageControllers.js"
-import auth from "../middleware/auth"
+import auth from "../middleware/auth.js"
 
 const router = express.Router();
 
