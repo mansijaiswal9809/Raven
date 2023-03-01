@@ -1,6 +1,6 @@
-const Message = require("../models/messageModel");
-const User = require("../models/userModel");
-const Chat = require("../models/chatModel");
+import Message from "../models/messageModel.js";
+import User from "../models/userModel.js";
+import Chat from "../models/chatModel.js";
 
 
 const allMessages =async (req, res) => {

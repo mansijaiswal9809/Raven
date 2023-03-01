@@ -1,12 +1,12 @@
-const express= require("express")
-const dotenv= require("dotenv")
+import express  from "express"
+import dotenv from "dotenv"
 dotenv.config()
-const cors= require("cors")
+import cors from "cors"
 // const { connection } = require("./config/db")
-const userRoutes = require("./routes/userRoutes")
-const chatRoutes = require("./routes/chatRoutes")
-const messageRoutes = require("./routes/messageRoutes")
-const { connection } = require("./config/db")
+import userRoutes from "./routes/userRoutes.js"
+import chatRoutes from "./routes/chatRoutes.js"
+import messageRoutes from "./routes/messageRoutes"
+import { connection } from "./config/db.js"
 const app= express()
 const port= process.env.PORT || 8080
 app.use(cors())

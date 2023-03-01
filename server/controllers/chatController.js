@@ -1,6 +1,5 @@
-const Chat = require("../models/chatModel");
-const User = require("../models/userModel");
-
+import Chat from "../models/chatModel.js";
+import User from "../models/userModel.js";
 const accessChat = async (req, res) => {
   const { friendId } = req.body;
   // console.log(req.userId, friendId);

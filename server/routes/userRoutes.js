@@ -1,6 +1,6 @@
-const express= require("express")
-const { registerUser, loginUser, allUser } = require("../controllers/userController")
-const auth = require("../middleware/auth")
+import express  from "express"
+import { registerUser, loginUser, allUser } from  "../controllers/userController.js"
+import auth from "../middleware/auth.js"
 const router= express.Router()
 // router.route("/").get(allUsers)
 router.post("/",registerUser)
