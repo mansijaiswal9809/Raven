@@ -5,7 +5,7 @@ import cors from "cors"
 // const { connection } = require("./config/db")
 import userRoutes from "./routes/userRoutes.js"
 import chatRoutes from "./routes/chatRoutes.js"
-import messageRoutes from "./routes/messageRoutes"
+import messageRoutes from "./routes/messageRoutes.js"
 import { connection } from "./config/db.js"
 const app= express()
 const port= process.env.PORT || 8080
